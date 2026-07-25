@@ -122,6 +122,18 @@ def main():
         labels=["Superficial (0-60 km)", "Intermedio (60-300 km)", "Profundo (mas de 300 km)"])
     log("[4] Campos derivados: Anio, Mes, Decada, RangoMagnitud, TipoProfundidad")
 
+    # 5) Estructura final: solo las columnas del analisis, con la fecha en un
+    #    formato plano que cualquier herramienta interpreta sin ambiguedad
+    df["FechaUTC"] = pd.to_datetime(df["FechaUTC"], utc=True).dt.tz_localize(None)
+    fecha_min, fecha_max = df["FechaUTC"].min().date(), df["FechaUTC"].max().date()
+    df["FechaUTC"] = df["FechaUTC"].dt.strftime("%Y-%m-%d %H:%M:%S")
+    columnas_finales = ["FechaUTC", "Latitud", "Longitud", "ProfundidadKm", "Magnitud",
+                        "Lugar", "Anio", "Mes", "Decada", "RangoMagnitud", "TipoProfundidad"]
+    df = df[[c for c in columnas_finales if c in df.columns]]
+    dups_estructura = int(df.duplicated().sum())
+    df = df.drop_duplicates()
+    log(f"[5] Estructura final: {len(df.columns)} columnas de analisis (se descartan las tecnicas de la fuente) | duplicados surgidos del recorte: {dups_estructura}")
+
     # Validacion final
     assert df.duplicated().sum() == 0
     assert df["Magnitud"].between(2, 10).all()
@@ -131,7 +143,7 @@ def main():
 
     log("")
     log(f"Registros finales: {len(df):,}  (descartados: {total_inicial - len(df):,})")
-    log(f"Periodo cubierto: {df['FechaUTC'].min().date()} a {df['FechaUTC'].max().date()}")
+    log(f"Periodo cubierto: {fecha_min} a {fecha_max}")
     log(f"Magnitud maxima: {df['Magnitud'].max():.1f} | Promedio: {df['Magnitud'].mean():.2f}")
     log(f"Sismos de magnitud 7.0 o mas: {int((df['Magnitud'] >= 7).sum()):,}")
     log("")
