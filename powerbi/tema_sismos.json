@@ -1,0 +1,20 @@
+{
+  "name": "Sismos Peru",
+  "dataColors": ["#8B1E1E", "#C0392B", "#E67E22", "#F1C40F", "#7F8C8D", "#34495E", "#5D6D7E", "#A93226"],
+  "background": "#FFFFFF",
+  "foreground": "#2B2B2B",
+  "tableAccent": "#8B1E1E",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "title": [{ "fontSize": 12, "fontFamily": "Segoe UI Semibold", "color": { "solid": { "color": "#2B2B2B" } } }],
+        "background": [{ "color": { "solid": { "color": "#FAF9F7" } }, "transparency": 0 }],
+        "visualHeader": [{ "show": false }]
+      }
+    }
+  },
+  "textClasses": {
+    "title": { "fontSize": 20, "fontFace": "Segoe UI Semibold", "color": "#8B1E1E" },
+    "label": { "fontSize": 10, "fontFace": "Segoe UI" }
+  }
+}

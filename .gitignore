@@ -1,0 +1,11 @@
+# Temporales de Power BI
+*.pbix.tmp
+~$*
+
+# Python
+__pycache__/
+*.pyc
+
+# SO
+Thumbs.db
+.DS_Store

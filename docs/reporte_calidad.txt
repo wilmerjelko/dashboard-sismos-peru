@@ -1,0 +1,19 @@
+==============================================================
+REPORTE DE CALIDAD - Catalogo Sismico del Peru (fuente USGS)
+==============================================================
+Archivo de entrada: query.csv
+Lectura correcta con codificacion utf-8-sig y separador ','
+Eventos no tectonicos excluidos del catalogo: 0
+Registros recibidos: 13,839
+
+[1] Registros con fecha o coordenadas invalidas eliminados: 0
+[2] Duplicados exactos eliminados: 0
+[3] Registros fuera de la zona de estudio: 0 | Magnitudes fuera de rango: 0
+[4] Campos derivados: Anio, Mes, Decada, RangoMagnitud, TipoProfundidad
+
+Registros finales: 13,839  (descartados: 0)
+Periodo cubierto: 1960-01-15 a 2026-07-24
+Magnitud maxima: 8.4 | Promedio: 4.60
+Sismos de magnitud 7.0 o mas: 51
+
+RESULTADO: dataset listo para Power BI -> data/sismos_peru.csv
